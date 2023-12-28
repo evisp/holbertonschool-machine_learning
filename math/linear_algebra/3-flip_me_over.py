@@ -3,12 +3,14 @@
 
 
 def matrix_transpose(matrix):
-    """ returns new matrix that is a transpose of the given 2D matrix """
+    """Returns the transpose of the given 2D matrix."""
     matrix_transpose = []
-    for index, row in enumerate(matrix):
-        if index is 0:
-            for i in row:
+
+    for row in matrix:
+        for idx, value in enumerate(row):
+            if len(matrix_transpose) <= idx:
                 matrix_transpose.append([])
-        for idx, i in enumerate(row):
-            matrix_transpose[idx].append(i)
+            matrix_transpose[idx].append(value)
+
     return matrix_transpose
+
