@@ -13,4 +13,3 @@ def matrix_transpose(matrix):
             matrix_transpose[idx].append(value)
 
     return matrix_transpose
-
