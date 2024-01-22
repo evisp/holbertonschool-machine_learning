@@ -14,4 +14,3 @@ def matrix_transpose(matrix):
             transpose[j][i] = matrix[i][j]
 
     return transpose
-
