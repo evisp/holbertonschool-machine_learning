@@ -15,4 +15,3 @@ def add_matrices2D(mat1, mat2):
         result.append(row)
 
     return result
-
