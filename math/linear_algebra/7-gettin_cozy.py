@@ -16,7 +16,10 @@ def cat_matrices2D(mat1, mat2, axis=0):
     elif axis == 1:
         if len(mat1) != len(mat2):
             return None
-        cat_matrix = [list(mat1_row + mat2_row) for mat1_row, mat2_row in zip(mat1, mat2)]
+        cat_matrix = []
+        for i in range(len(mat1)):
+            cat_matrix.append(list(mat1[i]) + list(mat2[i]))
         return cat_matrix
     else:
         return None
+
