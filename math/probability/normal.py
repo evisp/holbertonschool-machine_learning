@@ -42,7 +42,7 @@ class Normal:
         x = (z * stddev) + mean
         return x
     
-     def pdf(self, x):
+    def pdf(self, x):
         """calculates the value of the PDF for a given x-value """
         mean = self.mean
         stddev = self.stddev
