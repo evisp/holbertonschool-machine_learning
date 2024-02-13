@@ -64,3 +64,4 @@ class Normal:
         erf *= (2 / (pi ** (1 / 2)))
         cdf = (1 / 2) * (1 + erf)
         return cdf
+        
