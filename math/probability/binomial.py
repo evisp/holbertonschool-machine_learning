@@ -74,3 +74,4 @@ class Binomial:
         for i in range(k + 1):
             cdf += self.pmf(i)
         return cdf
+        
