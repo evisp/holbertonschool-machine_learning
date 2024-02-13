@@ -2,7 +2,7 @@
 """a class Exponential that represents an exponential distribution"""
 
 
-class Poisson:
+class Exponential:
     """
     a class Exponential that represents an exponential distribution
     """
