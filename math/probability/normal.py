@@ -27,3 +27,4 @@ class Normal:
                     summation += ((x - mean) ** 2)
                 stddev = (summation / len(data)) ** (1 / 2)
                 self.stddev = stddev
+                
