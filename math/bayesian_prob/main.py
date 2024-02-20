@@ -2,7 +2,8 @@
 
 if __name__ == '__main__':
     import numpy as np
-    likelihood = __import__('0-likelihood').likelihood
+    intersection = __import__('1-intersection').intersection
 
-    P = np.linspace(0, 1, 11) # [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-    print(likelihood(26, 130, P))
+    P = np.linspace(0, 1, 11)
+    Pr = np.ones(11) / 11 # this prior assumes that everything is equally as likely
+    print(intersection(26, 130, P, Pr))
