@@ -31,6 +31,7 @@ def intersection(x, n, P, Pr):
     factorial = np.math.factorial
     fact_coefficient = factorial(n) / (factorial(x) * factorial(n-x))
     likelihood = fact_coefficient * (P ** x) * ((1 - P) ** (n - x))
-
     intersection = likelihood * Pr
-    return intersection
+    marginal = np.sum(intersection)
+    posterior = intersection / marginal
+    return posterior
