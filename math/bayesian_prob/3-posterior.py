@@ -7,7 +7,7 @@ with the various hypothetical probabilities
 import numpy as np
 
 
-def intersection(x, n, P, Pr):
+def posterior(x, n, P, Pr):
     """ calculates the likelihood """
     if type(n) is not int or n <= 0:
         raise ValueError("n must be a positive integer")
