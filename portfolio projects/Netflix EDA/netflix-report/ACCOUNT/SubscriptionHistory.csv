@@ -1,0 +1,6 @@
+Subscription Opened Ts,Is Free Trial At Signup,Subscription Closed Ts,Is Customer Initiated Cancel,Signup Plan Category,Signup Max Concurrent Streams,Signup Max Streaming Quality,Plan Change Date,Plan Change Old Category,Plan Change Old Max Concurrent Streams,Plan Change Old Max Streaming Quality,Plan Change New Category,Plan Change New Max Concurrent Streams,Plan Change New Max Streaming Quality,Cancellation Reason
+2020-07-29 09:40:15.771+0000,0,,,STREAMING ONLY,1,HD720p,20200729,STREAMING ONLY,1,HD720p,STREAMING ONLY,2,HD,
+2020-07-29 09:40:15.771+0000,0,,,STREAMING ONLY,1,HD720p,20210903,STREAMING ONLY,2,HD,STREAMING ONLY,4,UHD,
+2020-07-29 09:40:15.771+0000,0,,,STREAMING ONLY,1,HD720p,20210925,STREAMING ONLY,4,UHD,STREAMING ONLY,2,HD,
+2020-07-29 09:40:15.771+0000,0,,,STREAMING ONLY,1,HD720p,20230213,STREAMING ONLY,2,HD,STREAMING ONLY,4,UHD,
+2020-04-24 19:46:52.428+0000,1,2020-07-25 01:59:34.683,1,STREAMING ONLY,2,HD,,,,,,,,VOL_CUSTOMER
