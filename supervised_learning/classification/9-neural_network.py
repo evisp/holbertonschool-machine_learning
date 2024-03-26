@@ -32,3 +32,34 @@ class NeuralNetwork:
         self.__W2 = np.random.randn(1, nodes)
         self.__b2 = 0
         self.__A2 = 0
+
+    @property 
+    def W1(self):
+        """ get method for property W1"""
+        return self.__W1
+
+    @property 
+    def b1(self):
+        """ get method for property b1"""
+        return self.__b1
+
+    @property 
+    def A1(self):
+        """ get method for property A1"""
+        return self.__A1
+
+    @property 
+    def W2(self):
+        """ get method for property W2"""
+        return self.__W2
+
+    @property 
+    def b2(self):
+        """ get method for property b2"""
+        return self.__b2
+
+    @property 
+    def A2(self):
+        """ get method for property A2"""
+        return self.__A2
+
