@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Class NeuralNetwork that defines a neural network 
+Class NeuralNetwork that defines a neural network
 with one hidden layer performing binary classification
 """
 
@@ -26,11 +26,40 @@ class NeuralNetwork:
         if nodes < 1:
             raise ValueError("nodes must be a positive integer")
 
-        self.W1 = np.random.randn(nodes, nx)
-        self.b1 = np.zeros((nodes, 1))
-        self.A1 = 0
-        self.W2 = np.random.randn(1, nodes)
-        self.b2 = 0
-        self.A2 = 0
+        self.__W1 = np.random.randn(nodes, nx)
+        self.__b1 = np.zeros((nodes, 1))
+        self.__A1 = 0
+        self.__W2 = np.random.randn(1, nodes)
+        self.__b2 = 0
+        self.__A2 = 0
 
+    @property 
+    def W1(self):
+        """ get method for property W1"""
+        return self.__W1
+
+    @property 
+    def b1(self):
+        """ get method for property b1"""
+        return self.__b1
+
+    @property 
+    def A1(self):
+        """ get method for property A1"""
+        return self.__A1
+
+    @property 
+    def W2(self):
+        """ get method for property W2"""
+        return self.__W2
+
+    @property 
+    def b2(self):
+        """ get method for property b2"""
+        return self.__b2
+
+    @property 
+    def A2(self):
+        """ get method for property A2"""
+        return self.__A2
 
