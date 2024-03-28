@@ -1,4 +1,11 @@
+#!/usr/bin/env python3
+"""
+DeepNeuralNetwork performing binary classification
+"""
+
+
 import numpy as np
+
 
 class DeepNeuralNetwork:
     """
