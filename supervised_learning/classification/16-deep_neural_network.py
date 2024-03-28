@@ -16,20 +16,25 @@ class DeepNeuralNetwork:
         """
         Class constructor
         """
-        if not isinstance(nx, int):
+        if type(nx) is not int:
             raise TypeError("nx must be an integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
-        if not isinstance(layers, list) or not all(isinstance(layer, int) and layer > 0 for layer in layers):
+        if type(layers) is not list or len(layers) < 1:
             raise TypeError("layers must be a list of positive integers")
-
-        self.cache = {}
-        self.weights = {}
+        
+        weights = {}
         previous = nx
+        
+        for index, layer in enumerate(layers, 1):
 
-        for l, layer_size in enumerate(layers, 1):
-            self.weights[f"W{l}"] = np.random.randn(layer_size, previous) * np.sqrt(2 / previous)
-            self.weights[f"b{l}"] = np.zeros((layer_size, 1))
-            previous = layer_size
+            if type(layer) is not int or layer < 0:
+                raise TypeError("layers must be a list of positive integers")
+
+            weights[f"b{index}"] = np.zeros((layer, 1))
+            weights[f"W{index}"] = np.random.randn(layer, previous) * np.sqrt(2 / previous)
+            previous = layer
 
         self.L = len(layers)
+        self.cache = {}
+        self.weights = weights
