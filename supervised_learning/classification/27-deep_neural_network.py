@@ -97,7 +97,7 @@ class DeepNeuralNetwork:
 
         return self.__cache["A{}".format(i)], self.__cache
 
-     def cost(self, Y, A):
+    def cost(self, Y, A):
         """
             Calculate cross-entropy cost for multiclass
         """
