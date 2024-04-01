@@ -1,6 +1,12 @@
 # Read Me
 
-### Key Concepts: Weights, Bias, Activation Function
+## Feed Forward Neural Networks
+
+Feedforward neural networks are fundamental structures in deep learning. They consist of interconnected layers of neurons, where information flows in one direction, from the input layer through hidden layers to the output layer. Each neuron applies a weighted sum of inputs, followed by an activation function, to produce an output.
+
+The essence of feedforward neural networks lies in their ability to learn complex patterns and relationships in data, making them powerful tools for tasks like classification, regression, and function approximation. They excel in handling large datasets and can automatically extract features from raw data, reducing the need for manual feature engineering.
+
+### Weights, Bias, Activation Function
 
 <img src="img/neuron.png" width="500"/>
 
@@ -15,7 +21,7 @@ Bias in neural networks is an additional parameter added to each neuron. It allo
 
 Activation functions in neural networks introduce nonlinearity to the model by transforming the weighted sum of inputs and bias into the output of the neuron. They determine whether the neuron should be "activated" (produce a high output) or not (produce a low output) based on the input. 
 
-### Key Concepts: Forward Propagation
+### Forward Propagation
 
 The primary aim of forward propagation in a neural network is to process input data through the network's layers, ultimately producing predictions or outputs. 
 
@@ -48,7 +54,7 @@ $$
 The forward_prop method returns the private attribute `self.__A`, which represents the activation of the neuron. By updating `self.__A` in the `forward_prop` method, we are able to pass the activation value to subsequent layers in the neural network during the forward propagation process.
 
 
-### Key Concept: Cost Function
+### Cost Function
 
 In logistic regression, the goal is to classify input data into one of two categories (0 or 1). The output of the logistic regression model is a probability value between 0 and 1, which represents the likelihood that the input belongs to the positive class (1).
 
@@ -69,7 +75,7 @@ $$
 J(w,b) = (1/m) * ∑(loss(y^{i}, a^{i})), i=1 \to m
 $$
 
-### Key Concept: Evaluate Neural Network
+### Evaluate Neural Network
 
 
 To evaluate a neuron model, we follow a simple process. First, we use the model to predict outcomes for a given set of input data. Then, we compare these predictions with the actual outcomes to assess how accurate the model is. Finally, we compute a measure of how well the model performed, typically referred to as the cost or loss.
@@ -89,7 +95,7 @@ In our case
     
 The function returns both the predictions and the computed cost, providing insights into the model's performance.
 
-### Key Concept: Gradient Descent
+### Gradient Descent
 
 
 The goal of the gradient descent algorithm is to minimize the loss function and find the optimal parameters (weights and bias) for a given neural network. It does this by iteratively updating the parameters in the direction of the steepest decrease of the loss function.
@@ -114,7 +120,7 @@ Key steps of the gradient descent algorithm:
 
     
     
-### Key Concept: Train a Neural Network
+### Train a Neural Network
 
 
 The main goal of training a neural network is to iteratively adjust its parameters (weights and bias) to minimize the prediction error and improve its performance. 
