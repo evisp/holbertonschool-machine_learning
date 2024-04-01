@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One hot decoding : converts a one-hot matrix into a vector of labels
+    One-Hot Decode
 """
 
 
@@ -9,10 +9,10 @@ import numpy as np
 
 def one_hot_decode(one_hot):
     """
-    converts a one-hot matrix into a vector of labels
+        Method that converts a one-hot vector into a
+        numerical label vector
     """
-    if type(one_hot) is not np.ndarray or len(one_hot.shape) != 2:
+    if not isinstance(one_hot, np.ndarray) or len(one_hot.shape) != 2:
         return None
-
-    vector = one_hot.transpose().argmax(axis=1)
-    return vector
+    else:
+        return np.argmax(one_hot, axis=0)
