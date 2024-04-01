@@ -160,7 +160,7 @@ class DeepNeuralNetwork:
             plt.ylabel("cost")
             plt.title("Training Cost")
             plt.show()
-        return (self.evaluate(X, Y))
+        return self.evaluate(X, Y)
 
     def save(self, filename):
         """
