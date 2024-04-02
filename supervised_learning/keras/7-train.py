@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    Train
+    Train with Learning Rate Decay
 """
 
 import tensorflow.keras as K
@@ -8,7 +8,8 @@ import tensorflow.keras as K
 
 def train_model(network, data, labels, batch_size,
                 epochs, validation_data=None, early_stopping=False,
-                patience=0, verbose=True, shuffle=False):
+                patience=0, learning_rate_decay=False, alpha=0.1,
+                decay_rate=1, verbose=True, shuffle=False):
     """
         Function that trains a model using mini-batch gradient descent
 
@@ -20,6 +21,9 @@ def train_model(network, data, labels, batch_size,
         :param validation_data: data to validate the model
         :param early_stopping: boolean, use or not early stopping
         :param patience: patience for early stopping
+        :param learning_rate_decay: boolean, use or not learning rate decay
+        :param alpha: initial learning rate
+        :param decay_rate: decay rate
         :param verbose: boolean, print or not during training
         :param shuffle: boolean, shuffle or not every epoch
 
@@ -27,8 +31,24 @@ def train_model(network, data, labels, batch_size,
     """
     callback = []
     if early_stopping is True and validation_data is not None:
-        callback = K.callbacks.EarlyStopping(monitor='val_loss',
-                                             patience=patience)
+        early_stop = K.callbacks.EarlyStopping(monitor='val_loss',
+                                               patience=patience)
+
+        # add to callback list
+        callback.append(early_stop)
+
+    if learning_rate_decay and validation_data:
+        # function calculate new learning rate
+        def scheduler(epochs):
+            lr = alpha / (1 + decay_rate * epochs)
+            return lr
+
+        inv_time_decay = K.callbacks.LearningRateScheduler(
+            scheduler,
+            verbose=1)
+
+        # add to callback list
+        callback.append(inv_time_decay)
 
     history = network.fit(x=data,
                           y=labels,
