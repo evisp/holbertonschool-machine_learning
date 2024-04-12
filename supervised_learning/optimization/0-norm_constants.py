@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
     Function standardization constants
@@ -18,3 +17,4 @@ def normalization_constants(X):
         :return: mean and standard deviation of each feature, respectively
     """
     return np.mean(X, axis=0), np.std(X, axis=0)
+
