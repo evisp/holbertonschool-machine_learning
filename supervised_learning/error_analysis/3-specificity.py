@@ -20,10 +20,12 @@ def specificity(confusion):
     # initialize specificity
     specificity_matrix = np.zeros((classes,))
 
-    # formule specificity : true negative / (true negative + false positive)
+    # formula of specificity : true negative / (true negative + false positive)
     for i in range(classes):
         true_pos = confusion[i, i]
+        # Summing the column i 
         false_pos = np.sum(confusion[:, i]) - true_pos
+        # Summing the row i 
         false_neg = np.sum(confusion[i, :]) - true_pos
 
         # TP = Total - (TP + FP + FN)

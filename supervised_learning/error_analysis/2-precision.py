@@ -22,6 +22,7 @@ def precision(confusion):
 
     for i in range(classes):
         true_positive = confusion[i, i]
+        # Sum of all elements in column
         false_positive = np.sum(confusion[:, i]) - true_positive
         precision_matrix[i] = true_positive / (true_positive + false_positive)
 
