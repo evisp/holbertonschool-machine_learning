@@ -14,18 +14,6 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32,
     """
         Function trains a loaded neural network model using
         mini-batch gradient descent
-
-        :param X_train: ndarray, shape(m,784), training data
-        :param Y_train: ndarray, shape(m,10), training labels
-        :param X_valid: ndarray, shape(m,784), validation data
-        :param Y_valid: ndarray, shape(m,10), validation labels
-        :param batch_size: number of data points in batch
-        :param epochs: number of times the training should pass
-               through the whole dataset
-        :param load_path: path from which to load the model
-        :param save_path: path to where save model after training
-
-        :return: path where model was saved
     """
 
     # metagraph and restore session
