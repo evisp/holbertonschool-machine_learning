@@ -3,29 +3,25 @@
    Adam upgraded
 """
 
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 
 
-def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
+def create_Adam_op(alpha, beta1, beta2, epsilon):
     """
-        Method that creates training op for NN
-        in tf using Adam optimization algo
+    Sets up the Adam optimization algorithm in TensorFlow.
 
-        :param loss: loss of NN
-        :param alpha: learning rate
-        :param beta1: weight used for firs moment
-        :param beta2: weight used for second moment
-        :param epsilon: small number to avoid division by 0
+    Args:
+        alpha (float): The learning rate.
+        beta1 (float): The weight used for the first moment.
+        beta2 (float): The weight used for the second moment.
+        epsilon (float): A small number to avoid division by zero.
 
-        :return: Adam optimization operation
+    Returns:
+        optimizer: Optimizer object for Adam.
     """
-    # set optimizer that implement Adam algo in tf
-    optimizer = tf.train.AdamOptimizer(learning_rate=alpha,
-                                       beta1=beta1,
-                                       beta2=beta2,
-                                       epsilon=epsilon)
-
-    # train_op to minimize loss with this optimizer
-    train_op = optimizer.minimize(loss)
-
-    return train_op
+    optimizer = tf.keras.optimizers.Adam(
+        learning_rate=alpha,
+        beta_1=beta1,
+        beta_2=beta2,
+        epsilon=epsilon)
+    return optimizer
