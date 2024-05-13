@@ -3,28 +3,20 @@
    RMSProp upgraded
 """
 
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 
 
-def create_RMSProp_op(loss, alpha, beta2, epsilon):
+def create_RMSProp_op(alpha, beta2, epsilon):
     """
-        Method tha create the training operation for NN
-        in tf using RMSProp optimization algo
+    Sets up the RMSProp optimization algorithm in TensorFlow.
 
-        :param loss: loss of NN
-        :param alpha: learning rate
-        :param beta2: RMSProp weight
-        :param epsilon: small number to avoid divsion by zero
+    Args:
+        alpha (float): The learning rate.
+        beta2 (float): The RMSProp weight (Discounting factor).
+        epsilon (float): A small number to avoid division by zero.
 
-        :return: RMSProp optimization operation
+    Returns:
+        optimizer: Optimizer object for RMSProp.
     """
-
-    # set optimizer taht implement Momentum algo in tf
-    optimizer = tf.train.RMSPropOptimizer(learning_rate=alpha,
-                                          decay=beta2,
-                                          epsilon=epsilon)
-
-    # train_op to minimize loss with this optimizer
-    train_op = optimizer.minimize(loss)
-
-    return train_op
+    optimizer = tf.keras.optimizers.RMSprop(learning_rate=alpha, rho=beta2, epsilon=epsilon)
+    return optimizer
