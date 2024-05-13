@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+"""
+   Momentum
+"""
+
+
 import tensorflow as tf
 
 def create_momentum_op(alpha, beta1):
