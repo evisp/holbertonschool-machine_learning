@@ -1,58 +1,47 @@
 #!/usr/bin/env python3
-"""
-Defines a function that builds a dense block using Keras
-"""
-
+"""Dense Block Module"""
 
 import tensorflow.keras as K
 
 
 def dense_block(X, nb_filters, growth_rate, layers):
-    """
-    Builds a dense block using Keras
+    """Builds a Dense Block.
 
-    parameters:
-        X: output from the previous layer
-        nb_filters [int]:
-            represents the number of filters in X
-        growth_rate: growth rate for the dense block
-        layers: number of layers in dense block
+    Args:
+        X: the output from the previous layer.
 
-    Use the bottleneck layers used for DenseNet-B
+        nb_filters: an integer representing the number of filters in X.
 
-    All convolutions inside the dense block should
-    be followed by batch normalization along the channels axis
-    and then ReLU activation, respectively
+        growth_rate: the growth rate for the dense block.
 
-    All weights should be initialized using he normal
+        layers: the number of layers in the dense block.
 
-    returns:
-        the concatenated output of each layer within the dense block
-            and the number of filter within the concatenated outputs
+    Returns:
+        The concatenated output of each layer within the Dense Block and the
+        number of filters within the concatenated outputs, respectively.
     """
 
-    init = K.initializers.he_normal()
-    activation = K.activations.relu
+    concatenated_layers = [X]
+    current_filters = nb_filters
+    init = K.initializers.he_normal
 
-    for layer in range(layers):
+    for _ in range(layers):
+        X = K.layers.BatchNormalization()(X)
+        X = K.layers.Activation("relu")(X)
+        X = K.layers.Conv2D(4 * growth_rate, 1,
+                            padding="same", kernel_initializer=init)(X)
 
-        Batch_Norm1 = K.layers.BatchNormalization(axis=3)(X)
-        ReLU1 = K.layers.Activation(activation)(Batch_Norm1)
+        X = K.layers.BatchNormalization()(X)
+        X = K.layers.Activation("relu")(X)
+        X = K.layers.Conv2D(growth_rate, 3, padding="same",
+                            kernel_initializer=init)(X)
 
-        C1 = K.layers.Conv2D(filters=(4 * growth_rate),
-                             kernel_size=(1, 1),
-                             padding='same',
-                             kernel_initializer=init)(ReLU1)
+        concatenated_layers.append(X)
+        X = K.layers.Concatenate()(concatenated_layers)
+        concatenated_layers.pop(0)
+        concatenated_layers.pop(0)
+        concatenated_layers.append(X)
 
-        Batch_Norm3 = K.layers.BatchNormalization(axis=3)(C1)
-        ReLU3 = K.layers.Activation(activation)(Batch_Norm3)
+        current_filters += growth_rate
 
-        C3 = K.layers.Conv2D(filters=growth_rate,
-                             kernel_size=(3, 3),
-                             padding='same',
-                             kernel_initializer=init)(ReLU3)
-
-        X = K.layers.concatenate([X, C3])
-        nb_filters += growth_rate
-
-    return X, nb_filters
+    return X, current_filters
