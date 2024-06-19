@@ -1,1 +1,5 @@
-theme: jekyll-theme-slate
+title: "Machine Learning Notes"
+description: "A collection of key ML concepts."
+baseurl: "/holbertonschool-machine_learning" # If this is a project site
+url: "https://evisp.github.io"
+theme: jekyll-theme-cayman
