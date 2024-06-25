@@ -2,6 +2,8 @@
 """
     Initialize Yolo
 """
+import cv2
+import os
 import tensorflow as tf
 import numpy as np
 
@@ -41,6 +43,30 @@ class Yolo:
     def process_outputs(self, outputs, image_size):
         """
             Function to process outputs
+
+        :param outputs: list of ndarray, predictions from a single image
+                each output,
+                shape(grid_height, grid_width, anchor_boxes, 4+1+classes)
+                grid_height, grid_width: height and width of grid
+                 used for the output
+                anchor_boxes: number of anchor boxes used
+                4 => (t_x, t_y, t_w, t_h)
+                1 => box_confidence
+                classes => classes probabilities for all classes
+        :param image_size: ndarray,
+               image's original size [image_height, image_width]
+
+        :return: tuple (boxes, box_confidences, box_class_probs):
+                boxes: list of ndarrays,
+                       shape(grid_height, grid_width, anchor_boxes, 4)
+                        processed boundary boxes for each output
+                        4 => (x1,y1, x2, y2)
+                boxe_confidences: list ndarray,
+                    shape(grid_height, grid_width, anchor_boxes, 1)
+                    boxe confidences for each output
+                box_class_probs: list ndarray,
+                    shape(grid_height, grid_width, anchor_boxes, classes)
+                    box's class probabilities for each output
         """
         # extract image size
         image_height, image_height = image_size
@@ -51,7 +77,6 @@ class Yolo:
 
         # process for each output
         for idx, output in enumerate(outputs):
-
             # extract height, width, number of anchor box for current output
             grid_height, grid_width, nbr_anchor, _ = output.shape
 
@@ -113,9 +138,26 @@ class Yolo:
     def filter_boxes(self, boxes, box_confidences, box_class_probs):
         """
             Public method to filter boxes of preprocess method
+
+        :param boxes: list of ndarray,
+              shape(grid_height, grid_width, anchor_boxes, 4)
+             processed boundary boxes for each output
+        :param box_confidences: list of ndarray,
+            shape(grid_height, grid_width, anchor_boxes, 1)
+            processed box confidences for each output
+        :param box_class_probs: list of ndarray,
+            shape(grid_height, grid_width, anchor_boxes, classes)
+            processed box class probabilities for each output
+        :return: tuple of (filtered_boxes, box_classes, box_scores)
+            - filtered_boxes: ndarray, shape(?, 4)
+                containing all of the filtered bounding boxes
+            - box_classes: ndarray, shape(?,)
+                 class number that each box in filtered_boxes predicts
+            - box_scores: ndarray,  shape(?)
+                box scores for each box in filtered_boxes
         """
 
-        # initialize with 4 col to be compatible with mask
+        # initialize with 4 col to be wompatible with mask
         filtered_boxes = np.empty((0, 4))
         box_classes = np.empty((0,), dtype=int)
         box_scores = np.empty(0, dtype=int)
@@ -143,10 +185,15 @@ class Yolo:
                                         axis=0)
 
         return filtered_boxes, box_classes, box_scores
-    
+
     def iou(self, box1, box2):
         """
             Execute Intersection over Union (IoU) between 2 box
+
+            :param box1: coordinate box1
+            :param box2: coordinate box2
+
+            :return: float, the IoU value between the two bounding boxes
         """
         b1x1, b1y1, b1x2, b1y2 = tuple(box1)
         b2x1, b2y1, b2x2, b2y2 = tuple(box2)
@@ -172,6 +219,24 @@ class Yolo:
         """
             method to apply Non-max Suppression
             (suppress overlapping box)
+
+            :param filtered_boxes: ndarray, shape(?,4)
+                    all filtered bounding boxes
+            :param box_classes: ndarray, shape(?,)
+                    class number for class that filtered_boxes predicts
+            :param box_scores: ndarray, shape(?)
+                box scores for each box in filtered_boxes
+
+            :return: tuple (box_predictions, predicted_box_classes,
+             predicted_box_scores)
+                - box_predictions : ndarray, shape(?,4)
+                    all predicted bounding boxes ordered by class and box score
+                - predicted_box_classes: ndarray, shape(?,)
+                    class number for box_predictions ordered by class and box
+                    score
+                - predicted_box_scores: ndarray, shape(?)
+                    box scores for box_predictions ordered by class and box
+                    score
         """
         box_predictions = []
         predicted_box_classes = []
@@ -219,3 +284,76 @@ class Yolo:
 
         return box_predictions, predicted_box_classes, predicted_box_scores
 
+    @staticmethod
+    def load_images(folder_path):
+        """
+            method to load images
+
+            :param folder_path: string, path the folder holding
+                all the images to load
+
+            :return: tuple (images, image_paths)
+                images : list of images as ndarray
+                image_paths: list of paths to the
+                individual images in images
+        """
+        images = []
+        images_paths = []
+        for filename in os.listdir(folder_path):
+            # check format of image
+            if filename.endswith(('.jpg', '.jpeg', '.png', '.bmp')):
+                # construct path
+                images_path = os.path.join(folder_path, filename)
+                # extract image with openCV
+                image = cv2.imread(images_path)
+                if image is not None:
+                    images.append(image)
+                    images_paths.append(images_path)
+
+        return images, images_paths
+
+    def preprocess_images(self, images):
+        """
+            method to preprocess images
+            resize with intercubic interpolation
+            rescale image in range [0, 1]
+
+            :param images: list of images as ndarray
+
+            :return: tuple of (pimages, image_shapes)
+                pimages: ndarray, shape(ni,input_h,input_w,3)
+                    ni: number of images that were preprocessed
+                    input_h: input height for Darknet model
+                    input_w: input width for Darknet model
+                    3: number of channels
+                image_shapes: ndarray, shape(ni,2)
+                    original height and width
+                    2 => (image_height, image_width)
+        """
+        pimages = []
+        image_shapes = []
+
+        for image in images:
+            # extract height, width, channel from image
+            h, w, c = image.shape
+            image_shapes.append([h, w])
+
+            # resize image
+            input_h = self.model.input.shape[1]
+            input_w = self.model.input.shape[2]
+            resized_img = cv2.resize(image,
+                                     dsize=(
+                                         input_h,
+                                         input_w),
+                                     interpolation=cv2.INTER_CUBIC)
+
+            # rescale
+            resized_img = resized_img / 255.0
+
+            pimages.append(resized_img)
+
+        # conversion in ndarray
+        pimages = np.array(pimages)
+        image_shapes = np.array(image_shapes)
+
+        return pimages, image_shapes
