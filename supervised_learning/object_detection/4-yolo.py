@@ -16,19 +16,6 @@ class Yolo:
     def __init__(self, model_path, classes_path, class_t, nms_t, anchors):
         """
             Class constructor of Yolo class
-
-            :param model_path: path where Darknet Keras model is stored
-            :param classes_path:path where list of class names,
-                in order of index
-            :param class_t: float, box score threshold
-                for initial filtering step
-            :param nms_t: float, IOU threshold for non-max suppression
-            :param anchors: ndarray, shape(outputs, anchor_boxes, 2)
-                all anchor boxes
-                outputs: number of outputs (prediction) made by Darknet model
-                anchor_boxes: number of anchor boxes used for each prediction
-                2: [anchor_box_width, anchor_box_height]
-
         """
         self.model = tf.keras.models.load_model(model_path)
         self.class_names = []
@@ -43,30 +30,6 @@ class Yolo:
     def process_outputs(self, outputs, image_size):
         """
             Function to process outputs
-
-        :param outputs: list of ndarray, predictions from a single image
-                each output,
-                shape(grid_height, grid_width, anchor_boxes, 4+1+classes)
-                grid_height, grid_width: height and width of grid
-                 used for the output
-                anchor_boxes: number of anchor boxes used
-                4 => (t_x, t_y, t_w, t_h)
-                1 => box_confidence
-                classes => classes probabilities for all classes
-        :param image_size: ndarray,
-               image's original size [image_height, image_width]
-
-        :return: tuple (boxes, box_confidences, box_class_probs):
-                boxes: list of ndarrays,
-                       shape(grid_height, grid_width, anchor_boxes, 4)
-                        processed boundary boxes for each output
-                        4 => (x1,y1, x2, y2)
-                boxe_confidences: list ndarray,
-                    shape(grid_height, grid_width, anchor_boxes, 1)
-                    boxe confidences for each output
-                box_class_probs: list ndarray,
-                    shape(grid_height, grid_width, anchor_boxes, classes)
-                    box's class probabilities for each output
         """
         # extract image size
         image_height, image_height = image_size
@@ -138,23 +101,6 @@ class Yolo:
     def filter_boxes(self, boxes, box_confidences, box_class_probs):
         """
             Public method to filter boxes of preprocess method
-
-        :param boxes: list of ndarray,
-              shape(grid_height, grid_width, anchor_boxes, 4)
-             processed boundary boxes for each output
-        :param box_confidences: list of ndarray,
-            shape(grid_height, grid_width, anchor_boxes, 1)
-            processed box confidences for each output
-        :param box_class_probs: list of ndarray,
-            shape(grid_height, grid_width, anchor_boxes, classes)
-            processed box class probabilities for each output
-        :return: tuple of (filtered_boxes, box_classes, box_scores)
-            - filtered_boxes: ndarray, shape(?, 4)
-                containing all of the filtered bounding boxes
-            - box_classes: ndarray, shape(?,)
-                 class number that each box in filtered_boxes predicts
-            - box_scores: ndarray,  shape(?)
-                box scores for each box in filtered_boxes
         """
 
         # initialize with 4 col to be wompatible with mask
@@ -189,11 +135,6 @@ class Yolo:
     def iou(self, box1, box2):
         """
             Execute Intersection over Union (IoU) between 2 box
-
-            :param box1: coordinate box1
-            :param box2: coordinate box2
-
-            :return: float, the IoU value between the two bounding boxes
         """
         b1x1, b1y1, b1x2, b1y2 = tuple(box1)
         b2x1, b2y1, b2x2, b2y2 = tuple(box2)
@@ -219,24 +160,6 @@ class Yolo:
         """
             method to apply Non-max Suppression
             (suppress overlapping box)
-
-            :param filtered_boxes: ndarray, shape(?,4)
-                    all filtered bounding boxes
-            :param box_classes: ndarray, shape(?,)
-                    class number for class that filtered_boxes predicts
-            :param box_scores: ndarray, shape(?)
-                box scores for each box in filtered_boxes
-
-            :return: tuple (box_predictions, predicted_box_classes,
-             predicted_box_scores)
-                - box_predictions : ndarray, shape(?,4)
-                    all predicted bounding boxes ordered by class and box score
-                - predicted_box_classes: ndarray, shape(?,)
-                    class number for box_predictions ordered by class and box
-                    score
-                - predicted_box_scores: ndarray, shape(?)
-                    box scores for box_predictions ordered by class and box
-                    score
         """
         box_predictions = []
         predicted_box_classes = []
@@ -288,14 +211,6 @@ class Yolo:
     def load_images(folder_path):
         """
             method to load images
-
-            :param folder_path: string, path the folder holding
-                all the images to load
-
-            :return: tuple (images, image_paths)
-                images : list of images as ndarray
-                image_paths: list of paths to the
-                individual images in images
         """
         images = []
         images_paths = []
