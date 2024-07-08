@@ -9,12 +9,12 @@ class GRUCell:
     """
 
     def __init__(self, i, h, o):
-        
+
         self.Wz = np.random.normal(size=(i+h, h))
         self.Wr = np.random.normal(size=(i+h, h))
         self.Wh = np.random.normal(size=(i+h, h))
         self.Wy = np.random.normal(size=(h, o))
-        
+
         self.bz = np.zeros((1, h))
         self.br = np.zeros((1, h))
         self.bh = np.zeros((1, h))
