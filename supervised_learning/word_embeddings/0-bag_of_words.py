@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bag of Words Module"""
 import numpy as np
-import re
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 def bag_of_words(sentences, vocab=None):
