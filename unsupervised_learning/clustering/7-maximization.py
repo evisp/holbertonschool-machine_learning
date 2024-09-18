@@ -1,55 +1,48 @@
 #!/usr/bin/env python3
-""" M-step: re-estimate all parameters so that
-the likelihood of observing what we observed is maximized
-"""
-
+"""Maximization Module"""
 import numpy as np
 
 
 def maximization(X, g):
+    """Calculates the maximization step in the EM algorithm for a GMM:
+
+    X is a numpy.ndarray of shape (n, d) containing the data set
+    g is a numpy.ndarray of shape (k, n) containing the posterior probabilities
+    for each data point in each cluster
+    You may use at most 1 loop
+
+    Returns: pi, m, S, or None, None, None on failure
+    pi is a numpy.ndarray of shape (k,) containing the updated priors for each
+    cluster
+    m is a numpy.ndarray of shape (k, d) containing the updated centroid means
+    for each cluster
+    S is a numpy.ndarray of shape (k, d, d) containing the updated covariance
+    matrices for each cluster
     """
-    calculates the maximization step in the EM algorithm for a GMM
-    """
+
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         return None, None, None
-    if not isinstance(g, np.ndarray) or len(X.shape) != 2:
-        return None, None, None
 
-    gaussian_components = g
-
-    k = gaussian_components.shape[0]
     n, d = X.shape
 
-    posterior_prob = np.sum(gaussian_components, axis=0)
-    check = np.sum(posterior_prob)
-    if check != X.shape[0]:
+    if not isinstance(g, np.ndarray) or len(g.shape) != 2:
         return None, None, None
 
-    # pi
-    priors = np.zeros((k,))
+    k, n1 = g.shape
 
-    # m
-    centroid_updated = np.zeros((k, d))
+    if n != n1 or np.abs(np.sum(g, axis=0) - 1).max() > 1e-10:
+        return None, None, None
 
-    # S
-    covariance_updated = np.zeros((k, d, d))
+    S = np.zeros((k, d, d))
 
-    # Formula https://bit.ly/31pkdox
+    sum_g = np.sum(g, axis=1)
+
+    pi = sum_g / n
+    m = np.dot(g, X) / sum_g[:, np.newaxis]
+
     for i in range(k):
+        diff = X - m[i]
+        weighted_diff = (g[i, :, np.newaxis] * diff).T
+        S[i] = np.dot(weighted_diff, diff) / sum_g[i]
 
-        # Mu components
-        # Needed to adjust dimensions for fitting the covariance
-        mu_up = np.sum((gaussian_components[i, :, np.newaxis] * X), axis=0)
-        mu_down = np.sum(gaussian_components[i], axis=0)
-        centroid_updated[i] = mu_up / mu_down
-
-        # Sigma components
-        x_m = X - centroid_updated[i]
-        sigma_up = np.matmul(gaussian_components[i] * x_m.T, x_m)
-        sigma_down = np.sum(gaussian_components[i])
-        covariance_updated[i] = sigma_up / sigma_down
-
-        # Pi =  priors after computing derivation of sigma and mu
-        # Formula: P(j) = n(j) / n = Σn i=1 P(j|i) / n
-        priors[i] = np.sum(gaussian_components[i]) / n
-    return priors, centroid_updated, covariance_updated
+    return pi, m, S
