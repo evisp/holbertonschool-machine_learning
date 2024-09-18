@@ -8,7 +8,7 @@ def pdf(X, m, S):
     """
     Probability Density Function of gaussian distributions
     """
-    
+
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         return None
     if not isinstance(m, np.ndarray) or len(m.shape) != 1:
