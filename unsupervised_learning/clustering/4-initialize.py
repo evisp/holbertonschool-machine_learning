@@ -18,7 +18,7 @@ def initialize(X, k):
     n, d = X.shape
 
     # priors for each cluster, initialized evenly
-    phi = np.ones(k)/k
+    phi = np.ones(k) / k
 
     # centroid means for each cluster, initialized with K-means
     m, _ = kmeans(X, k)
