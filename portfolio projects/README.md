@@ -141,8 +141,4 @@ The project is structured into three main phases: dataset preparation and model 
   - Prepare a Jupyter notebook or script with comments and explanations for your portfolio.
   - **Deliverables**: Well-documented code, demo video, and a polished portfolio-ready project.
 
-### **Tools and Technologies:**
-- **Frameworks**: TensorFlow or PyTorch for building CNN and NLP models.
-- **Libraries**: OpenCV for video processing, NLTK/spaCy for NLP, and Transfer Learning models for better results.
-- **Hardware**: A GPU is recommended for faster training (e.g., Google Colab or local GPU).
 
