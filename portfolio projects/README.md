@@ -80,8 +80,8 @@ The project is structured into three main phases: dataset preparation and model 
 
 #### **Day 4-5: Dataset Acquisition and Exploration**
 - **Objective**: Find relevant datasets.
-  - Look for image datasets of sign language (e.g., American Sign Language dataset on Kaggle).
-  - Optionally, find a video dataset for translating sign language videos into text (e.g., RWTH-PHOENIX-Weather dataset).
+  - Look for image datasets of sign language (e.g., [American Sign Language dataset](https://www.kaggle.com/datasets/grassknoted/asl-alphabet) on Kaggle).
+  - Optionally, find a video dataset for translating sign language videos into text (e.g., [RWTH-PHOENIX-Weather dataset](https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX/)).
   - Perform initial exploratory data analysis (EDA).
   - **Deliverables**: Clean dataset ready for preprocessing, basic insights about the dataset.
 
