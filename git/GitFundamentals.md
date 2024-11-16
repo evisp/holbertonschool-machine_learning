@@ -34,6 +34,14 @@ While Git is a local version control system, GitHub extends its capabilities by 
 ## 5. **How to Create a Repository**  
 A repository is the foundation of version control. It stores your project files, their history, and all changes made over time. For machine learning projects, repositories often include datasets, scripts, notebooks, and documentation.  
 
+![Git Repository](https://harshkapadia2.github.io/git_basics/static/img/git-local-remote.png)
+
+Git operates on two main levels: **local** and **remote** repositories. A **local repository** exists on your computer, where you can make changes, stage files (preparing them for a commit using `git add`), and commit those changes (saving a snapshot of your work using `git commit`). 
+
+The **remote repository**, typically hosted on platforms like GitHub, is a shared version of the repository accessible to collaborators. 
+
+You can **push** your commits to the remote repository to share updates and **pull** updates from the remote to sync your local repository with others' changes. This workflow ensures smooth collaboration and version control.
+
 1. **Create locally**:  
    ```bash  
    git init  
