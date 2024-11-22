@@ -1,3 +1,5 @@
+![Holberton School Logo](https://cdn.prod.website-files.com/6105315644a26f77912a1ada/63eea844ae4e3022154e2878_Holberton.png)
+
 # Linear Algebra for Machine Learning
 
 This folder covers essential linear algebra concepts used in machine learning. Understanding these principles is crucial for grasping machine learning algorithms and their implementations.

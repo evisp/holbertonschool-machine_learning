@@ -1,3 +1,5 @@
+![Holberton School Logo](https://cdn.prod.website-files.com/6105315644a26f77912a1ada/63eea844ae4e3022154e2878_Holberton.png)
+
 # Math Concepts for Machine Learning
 
 In this directory, we will cover key mathematical concepts essential for understanding machine learning. Currently, we have the following folder:
