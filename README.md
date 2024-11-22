@@ -21,5 +21,7 @@ You can navigate to individual folders for detailed content.
 
 - [Git](./git): Resources and exercises to build proficiency in version control using Git.
 
+- [Math](./math): Key mathematical concepts related to machine learning training, including linear algebra, probability and statistics, and calculus. This section will cover the foundational math you need to understand machine learning algorithms deeply.
+
 Additional directories will be added as the program progresses.
 
