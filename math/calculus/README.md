@@ -1,8 +1,5 @@
 ![Holberton School Logo](https://cdn.prod.website-files.com/6105315644a26f77912a1ada/63eea844ae4e3022154e2878_Holberton.png)
 
-Here's a concise README for the calculus project with a focus on its application in machine learning:
-
----
 
 # Calculus for Machine Learning
 
