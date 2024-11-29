@@ -47,4 +47,11 @@ This project focuses on simulating a random walk in a 2D grid using **Numpy** fo
    - Experiment with larger grid sizes and analyze how it affects the results.  
 ---
 
+#### **Visualization Example: Random Walk in a Grid**
+
+Below is an example visualization of a **Random Walk** in a 10x10 grid. The blue line shows the random path taken from the starting position (green) to the goal (red). This illustrates how randomness can lead to unpredictable yet fascinating trajectories!  
+
+![Random Walk Visualization](../figs/randomwalk.png)  
+
+
 
