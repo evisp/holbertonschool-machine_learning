@@ -67,9 +67,9 @@ Thus:
 \]
 
 This matches the formula for \( m = n+1 \):
-\[
+$$
 \frac{(n+1)(n+2)(2(n+1)+1)}{6}.
-\]
+$$
 
 ---
 
