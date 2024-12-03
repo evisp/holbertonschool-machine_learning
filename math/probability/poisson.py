@@ -27,10 +27,7 @@ class Poisson:
             float: The PMF value for k.
         """
         if not isinstance(k, int):
-            try:
-                k = int(k)
-            except ValueError:
-                return 0
+            k = int(k)
         
         if k < 0:
             return 0
@@ -38,4 +35,4 @@ class Poisson:
         e = 2.7182818285
 
         # Compute PMF using the formula: P(k; λ) = (λ^k * e^(-λ)) / k!
-        return (self.lambtha ** k * e**(-self.lambtha)) / math.factorial(k)
+        return (e**(-self.lambtha) * self.lambtha ** k ) / math.factorial(k)
