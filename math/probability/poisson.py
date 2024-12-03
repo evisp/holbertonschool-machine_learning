@@ -35,5 +35,7 @@ class Poisson:
         if k < 0:
             return 0
 
+        e = 2.7182818285
+
         # Compute PMF using the formula: P(k; λ) = (λ^k * e^(-λ)) / k!
-        return (self.lambtha ** k * math.exp(-self.lambtha)) / math.factorial(k)
+        return (self.lambtha ** k * e**(-self.lambtha)) / math.factorial(k)
