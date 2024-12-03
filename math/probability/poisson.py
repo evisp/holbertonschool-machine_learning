@@ -26,6 +26,7 @@ class Poisson:
         Returns:
             float: The PMF value for k.
         """
+        import math
         if not isinstance(k, int):
             k = int(k)
         
@@ -47,6 +48,7 @@ class Poisson:
         Returns:
             float: The CDF value for k.
         """
+        import math
         if not isinstance(k, int):
             try:
                 k = int(k)
