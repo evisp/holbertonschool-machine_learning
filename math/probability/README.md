@@ -1,7 +1,5 @@
 ![Holberton School Logo](https://cdn.prod.website-files.com/6105315644a26f77912a1ada/63eea844ae4e3022154e2878_Holberton.png)
 
-Here's a concise README for the probability folder:
-
 ---
 
 # Probability for Machine Learning
@@ -28,8 +26,3 @@ This project focuses on fundamental probability concepts, which are essential fo
 #### Common Probability Distributions  
 Exploration of frequently used distributions such as binomial, normal, and uniform distributions, and their applications in machine learning.
 
----
-
-By understanding these concepts, you'll gain the ability to work with data uncertainty, model probabilities, and dive deeper into statistical and machine learning techniques.
-
----
