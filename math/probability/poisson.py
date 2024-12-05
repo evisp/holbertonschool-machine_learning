@@ -33,14 +33,11 @@ class Poisson:
 
     def cdf(self, k):
         """Calculates the CDF"""
-        if k is not int:
+        if type(k) is not int:
             k = int(k)
         if k < 0:
             return 0
         cdf = 0
-        for i in range(0, k + 1):
-            fact = 1
-            for j in range(1, i + 1):
-                fact = fact * j
-            cdf += self.lambtha ** i / fact
-        return cdf * e ** -self.lambtha
+        for i in range(k + 1):
+            cdf += self.pmf(i)
+        return cdf
