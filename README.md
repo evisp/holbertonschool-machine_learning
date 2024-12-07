@@ -19,9 +19,10 @@ Concentrates on deploying and scaling machine learning systems in production env
 The repository is organized into directories, each corresponding to a specific aspect of the program.  
 You can navigate to individual folders for detailed content.
 
-- [Git](./git): Resources and exercises to build proficiency in version control using Git.
-
-- [Math](./math): Key mathematical concepts related to machine learning training, including linear algebra, probability and statistics, and calculus. This section will cover the foundational math you need to understand machine learning algorithms deeply.
+- [Git](./git): Resources and exercises to build proficiency in version control using Git.  
+- [Math](./math): Key mathematical concepts related to machine learning training, including linear algebra, probability and statistics, and calculus. This section will cover the foundational math you need to understand machine learning algorithms deeply.  
+- [Pipeline](./pipeline): Tools and techniques for building machine learning workflows. Currently includes Pandas for data preprocessing.
 
 Additional directories will be added as the program progresses.
 
+---
