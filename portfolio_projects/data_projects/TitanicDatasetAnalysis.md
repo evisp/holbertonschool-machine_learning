@@ -23,7 +23,7 @@ In this project, you will explore the Titanic dataset, which contains informatio
      - `Pandas`: for data manipulation.
      - `Matplotlib` and `Seaborn`: for data visualization.
      - `NumPy` (optional for certain calculations).
-    - If you are using `Jyputer notebooks` or `Google Colab` the above tools are already pre-installed 
+    - If you are using `Jupyter notebooks` or `Google Colab` the above tools are already pre-installed 
 
 #### **Project Objectives:**
 
@@ -93,7 +93,6 @@ In this project, you will explore the Titanic dataset, which contains informatio
 
 4. **Can we predict the survival rate using other demographic features like Age, Pclass, Fare, and SibSp/Parch?**
    - Perform a regression analysis or train a classification model (like logistic regression) to predict survival. Evaluate model performance using accuracy, precision, recall, and confusion matrix.
-
 
 #### **Steps to Get Started:**
 1. **Load the dataset:**
