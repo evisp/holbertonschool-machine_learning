@@ -23,7 +23,7 @@ if __name__ == "__main__":
         print(r.json()["location"])
 
     elif r.status_code == 404:
-        print("Not found")
+        print("Not found ")
 
     elif r.status_code == 403:
         rate_limit = int(r.headers["X-Ratelimit-Reset"])
