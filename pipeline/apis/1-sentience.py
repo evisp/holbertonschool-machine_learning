@@ -12,36 +12,22 @@ def sentientPlanets():
     Returns the list of names of the home planets of all sentient species
     """
     url = "https://swapi-api.hbtn.io/api/species"
-    planets = set()
-    while url:  # Loop until there's no more pages
-        response = requests.get(url)
+    sentient_planets = []
+    while url is not None:
+        data = requests.get(url).json()
+        species = data.get("results")
+        for specie in species:
+            if specie.get('designation') == 'sentient' or \
+                    specie.get('classification') == 'sentient':
+                homeworld_url = specie.get("homeworld")
 
-        if response.status_code != 200:
-            print(f"Failed to retrieve data: {response.status_code}")
-            return list(planets)  # Return as a list
+                if homeworld_url is None:
+                    continue
+                sentient_planets.append(
+                    requests.get(homeworld_url).json().get("name")
+                )
 
-        try:
-            data = response.json()
-        except ValueError:
-            print("Error decoding JSON")
-            return list(planets)  # Return as a list
+        url = data.get("next")
 
-        for species in data['results']:
-            # Check for sentient species
-            if 'sentient' in species.get('classification', '').lower() or \
-               'sentient' in species.get('designation', '').lower():
+    return sentient_planets
 
-                planet_url = species.get('homeworld')
-                if planet_url:
-                    # Make a request to get the planet name
-                    planet_response = requests.get(planet_url)
-                    if planet_response.status_code == 200:
-                        planet_data = planet_response.json()
-                        planets.add(planet_data['name'])
-                    else:
-                        print(f"Error: {planet_response.status_code}")
-
-        # Update the URL for the next set of species
-        url = data['next']
-
-    return list(planets)
