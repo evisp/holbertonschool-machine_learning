@@ -21,4 +21,3 @@ def availableShips(passengerCount):
         data = requests.get(data.get("next")).json()
 
     return available_ships
-
