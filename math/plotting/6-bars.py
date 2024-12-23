@@ -32,3 +32,4 @@ def bars():
     plt.title('Number of Fruit per Person')
     plt.ylim([0, 80])
     plt.show()
+
