@@ -12,6 +12,4 @@ This folder focuses on **Pandas**, a powerful Python library for data manipulati
 - **Merging and Joining**: Combining multiple datasets for analysis.  
 - **Input and Output**: Reading from and writing to various file formats (CSV, Excel, etc.).  
 
-By mastering Pandas, you'll develop essential skills for preparing and processing data in machine learning workflows. 
-
 ---
