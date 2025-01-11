@@ -1,0 +1,22 @@
+-- Insert products (10+ records)
+INSERT INTO products (name, category, price) VALUES
+('Laptop', 'Electronics', 999.99),
+('Smartphone', 'Electronics', 799.99),
+('Headphones', 'Accessories', 199.99),
+('Coffee Maker', 'Home Appliances', 79.99),
+('Microwave', 'Home Appliances', 149.99),
+('Refrigerator', 'Home Appliances', 499.99),
+('Tablet', 'Electronics', 299.99),
+('Smartwatch', 'Accessories', 199.99),
+('Wireless Mouse', 'Accessories', 29.99),
+('Bluetooth Speaker', 'Electronics', 59.99),
+('Camera', 'Electronics', 450.00),
+('Keyboard', 'Accessories', 49.99),
+('Monitor', 'Electronics', 250.00),
+('Air Conditioner', 'Home Appliances', 349.99),
+('Washing Machine', 'Home Appliances', 499.99),
+('Dishwasher', 'Home Appliances', 399.99),
+('Coffee Grinder', 'Home Appliances', 89.99),
+('Smart Lightbulb', 'Home Appliances', 25.99),
+('Projector', 'Electronics', 400.00),
+('Bluetooth Earbuds', 'Accessories', 120.00);
