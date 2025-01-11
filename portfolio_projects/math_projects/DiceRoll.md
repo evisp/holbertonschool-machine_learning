@@ -2,6 +2,7 @@
 
 ## Dice Roll Statistics
 
+
 #### **Project Description**  
 In this project, you will simulate rolling a fair 6-sided die multiple times using **Numpy** for random number generation. The goal is to track the frequency of each outcome, calculate basic statistics such as probabilities, and compare the results to the theoretical probabilities of a fair die. The project reinforces the use of random functions, basic probability, and data visualization.
 
