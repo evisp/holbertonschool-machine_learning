@@ -23,17 +23,10 @@ Explore the world of randomness and probability through fun simulations and game
 - **[Random Walker in a Grid](math_projects/RandomWalker.md)**: Create a 2D random walk, visualize paths, and analyze movement behavior.  
 - **[Rock-Paper-Scissors Simulator](math_projects/RockPaperScissor.md)**: Compete against a **random** AI, track outcomes, and explore conditional probabilities.  
 
-#### **Hints for Success**  
-- Familiarize yourself with **Numpy** for random number generation and array operations.  
-- Use **Matplotlib** to showcase your results through plots and charts.  
-- Reflect on the results: How do they compare to theoretical expectations?  
-
-### 2. **(Other Categories Placeholder)**  
-This repository will grow to include projects in additional areas like:  
-- Machine Learning  
-- Data Visualization  
-- Simulation and Modeling  
-
----
+### 2. **Supervised Learning**  
+Practical hands-on machine learning projects that demonstrate the supervised learning techniques. Projects in this category include:  
+- **[Simple End-to-End ML Flow with IRIS Dataset](supervised_learning/End%20to%20End%20ML%20Workflow.ipynb)**: Implement a basic machine learning pipeline, from data preprocessing to model evaluation, using the classic IRIS dataset.  
+- **[Classification of Wisconsin Dataset](supervised_learning/Complete%20Classification%20Wisconsin.ipynb)**: Build and evaluate a classification model to predict breast cancer diagnosis using the Wisconsin dataset.  
+- **[Regression of California Housing Dataset](supervised_learning/Price%20Prediction%20Analysis%20using%20California%20Housing%20Dataset.ipynb)**: Develop a regression model to predict housing prices using the California housing dataset, showcasing feature engineering and model evaluation.  
 
 
