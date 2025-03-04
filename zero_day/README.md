@@ -15,7 +15,6 @@ Version control is essential for managing code and collaborating effectively.
 
 ### Resources:
 - [Official Git Documentation](https://git-scm.com/doc)
-- [GitHub Learning Lab](https://lab.github.com/)
 - [GitHub Docs](https://docs.github.com/en)
 - [Interactive Git Tutorial](https://learngitbranching.js.org/)
 
@@ -46,7 +45,6 @@ A lightweight and powerful code editor.
 For running Python code interactively.
 
 #### Jupyter Notebook:
-- [Official Jupyter Guide](https://jupyter.org/install)
 - [Jupyter Notebook Basics](https://realpython.com/jupyter-notebook-introduction/)
 - [Download Anaconda (Includes Jupyter Notebook)](https://www.anaconda.com/download)
 
@@ -66,7 +64,5 @@ Understanding the workflow of an ML project is essential before diving into deep
 6. **Evaluation** - Measuring model performance with metrics.
 
 ### Resources:
-- [Machine Learning Workflow](https://towardsdatascience.com/machine-learning-pipeline-ecfb2b75c7e7)
-- [Hands-on ML Pipeline](https://machinelearningmastery.com/machine-learning-pipeline-tutorial/)
-- [Data Preprocessing Guide](https://www.analyticsvidhya.com/blog/2021/10/data-preprocessing-in-machine-learning-a-complete-guide/)
-
+- [Machine Learning Workflow](https://sigma.ai/machine-learning-workflow/)
+- [A beginners guide to the machine learning workflow](https://www.datacamp.com/blog/a-beginner-s-guide-to-the-machine-learning-workflow)
