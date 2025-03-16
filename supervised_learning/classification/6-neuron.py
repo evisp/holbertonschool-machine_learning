@@ -103,6 +103,8 @@ class Neuron:
         # label values
         result = np.where(A >= 0.5, 1, 0)
 
+        return result, cost
+
     def gradient_descent(self, X, Y, A, alpha=0.05):
         """
             Method calculate one pass of gradient descent on the neuron
