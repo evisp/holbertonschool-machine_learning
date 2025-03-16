@@ -102,3 +102,5 @@ class Neuron:
 
         # label values
         result = np.where(A >= 0.5, 1, 0)
+
+        return result, cost
