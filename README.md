@@ -22,6 +22,9 @@ You can navigate to individual folders for detailed content.
 - [Git](./git): Resources and exercises to build proficiency in version control using Git.  
 - [Math](./math): Key mathematical concepts related to machine learning training, including linear algebra, probability and statistics, and calculus. This section will cover the foundational math you need to understand machine learning algorithms deeply.  
 - [Pipeline](./pipeline): Tools and techniques for building machine learning workflows. Currently includes Pandas for data preprocessing.
+- [Supervised Learning](./supervised_learning): Covers machine learning techniques that rely on labeled data, such as regression, classification, decision trees, and neural networks.  
+- [Unsupervised Learning](./unsupervised_learning): Focuses on learning patterns from unlabeled data, including clustering, dimensionality reduction, and anomaly detection.  
+
 
 Additional directories will be added as the program progresses.
 
