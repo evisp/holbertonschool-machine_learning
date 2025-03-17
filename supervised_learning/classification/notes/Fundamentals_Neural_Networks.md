@@ -87,7 +87,9 @@ $$ f(x) = \max(0, x) $$
 ### Softmax Function
 The **softmax function** is typically used in the output layer of a neural network for multi-class classification problems. It converts the raw output values (logits) into probabilities that sum to 1, making it useful for problems where each input belongs to one of several categories.
 
-$$ \sigma(z)_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$
+$$
+σ(z)_i = e^(z_i) / Σ_j e^(z_j)
+$$
 
 
 <img src="https://cdn.botpenguin.com/assets/website/Softmax_Function_07fe934386.png" width="300"/>
