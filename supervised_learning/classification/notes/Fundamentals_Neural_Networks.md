@@ -185,14 +185,6 @@ A **loss function** quantifies how well or poorly the model’s predictions matc
 
 - **Example**: If the true label for an image is "cat" and the model predicts "dog," the loss function will measure how different the predicted output is from the actual label.
 
-### What is Cross-Entropy Loss?
-**Cross-entropy loss** is commonly used in classification tasks, particularly when the model outputs probabilities (e.g., with a softmax activation). It measures the difference between the true probability distribution (true labels) and the predicted distribution (model's output).
-
-The formula for cross-entropy loss is:
-$$ L = -\sum_{i} y_i \log(\hat{y}_i) $$  
-where \(y_i\) is the true label and \(\hat{y}_i\) is the predicted probability.
-
-- **Example**: For a binary classification, if the model predicts a 0.8 probability for the correct class, the loss will be lower than if the prediction was 0.1.
 
 ### What is a Cost Function?
 The **cost function** is the average of the loss function over all training examples. It is used to evaluate the overall performance of the network during training. Minimizing the cost function improves the model's ability to make correct predictions on new, unseen data.
