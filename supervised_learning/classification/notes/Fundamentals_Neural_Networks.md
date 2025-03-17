@@ -102,23 +102,14 @@ Classification algorithms are used to predict discrete categories or labels from
 ### What is Logistic Regression?
 Logistic Regression is a classification algorithm that predicts binary outcomes (0 or 1) using the **sigmoid function**. It models the probability of an event occurring based on input features. The sigmoid function maps any real-valued number to a value between 0 and 1, which can be interpreted as a probability. If the probability is greater than 0.5, the model predicts one class; otherwise, it predicts the other.
 
-- **Mathematical Formulation**:  
-  The logistic regression model is typically expressed as:
-  $$ p(y = 1 | X) = \frac{1}{1 + e^{-z}} $$
-  where \( z = w_1x_1 + w_2x_2 + ... + w_nx_n + b \), and \( w_i \) are the weights, \( x_i \) are the features, and \( b \) is the bias term.
-
-- **Intuition**: Logistic regression estimates the probability of a binary outcome (like "spam" or "not spam") based on input features (like email content). If the estimated probability exceeds a threshold (often 0.5), the model predicts one class; otherwise, it predicts the other.
-
-- **Illustration**: Imagine you have a dataset of emails, and you're trying to predict whether an email is spam (1) or not spam (0). The model will learn a weight for each feature (e.g., words in the email) and calculate a probability for each new email.
+- Logistic regression estimates the probability of a binary outcome (like "spam" or "not spam") based on input features (like email content). If the estimated probability exceeds a threshold (often 0.5), the model predicts one class; otherwise, it predicts the other.
+- Imagine you have a dataset of emails, and you're trying to predict whether an email is spam (1) or not spam (0). The model will learn a weight for each feature (e.g., words in the email) and calculate a probability for each new email.
 
 ### What is Multiclass Classification?
+
 **Multiclass classification** is a type of classification where an input can belong to one of more than two distinct categories. Unlike binary classification, which only has two possible outcomes, multiclass classification involves more than two classes. The **softmax activation function** is typically used to handle multiclass problems, converting raw model outputs (logits) into probabilities that sum to 1.
 
-- **Softmax Function**: The softmax function calculates the probability of each class given the inputs:
-  $$ \sigma(z)_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$  
-  where \( z_i \) are the raw outputs (logits) for each class. The softmax function ensures that the predicted probabilities for all classes sum to 1, making them interpretable as probabilities.
-
-- **Illustration**: Imagine a model that classifies fruits as "apple," "banana," or "cherry." The softmax function will assign a probability to each fruit, such as 0.7 for apple, 0.2 for banana, and 0.1 for cherry. The class with the highest probability is selected as the prediction.
+Imagine a model that classifies fruits as "apple," "banana," or "cherry." The softmax function will assign a probability to each fruit, such as 0.7 for apple, 0.2 for banana, and 0.1 for cherry. The class with the highest probability is selected as the prediction.
 
 ### What is a One-Hot Vector?
 A **one-hot vector** is a binary representation of categorical data, where only one element is set to 1, and all other elements are 0. This vector is commonly used to represent classes in classification tasks, as many machine learning models (like neural networks) require numerical input.
@@ -128,9 +119,8 @@ A **one-hot vector** is a binary representation of categorical data, where only 
   - Banana: [0, 1, 0]
   - Cherry: [0, 0, 1]
 
-- **Intuition**: A one-hot vector uniquely identifies a class without assuming any order or relationship between classes. For example, "apple" is not numerically greater or less than "banana"; they are simply different.
-
-- **Illustration**: When training a model to classify fruits, instead of using labels like "apple" or "banana," you would use one-hot vectors like [1, 0, 0] for "apple" and [0, 1, 0] for "banana."
+- A one-hot vector uniquely identifies a class without assuming any order or relationship between classes. For example, "apple" is not numerically greater or less than "banana"; they are simply different.
+- When training a model to classify fruits, instead of using labels like "apple" or "banana," you would use one-hot vectors like [1, 0, 0] for "apple" and [0, 1, 0] for "banana."
 
 ### How to Encode/Decode One-Hot Vectors
 
@@ -150,48 +140,97 @@ A **one-hot vector** is a binary representation of categorical data, where only 
 
 ## 5. Training a Neural Network
 
+Training a neural network involves several steps to optimize the model's weights and biases so that it can make accurate predictions. These steps typically include forward propagation, calculating the loss, and updating weights via backpropagation, followed by an optimization step using gradient descent.
+
+### Key Steps in Training:
+1. **Forward Propagation**: Pass input data through the network to generate predictions.
+2. **Loss Calculation**: Use a loss function to compare predictions to actual values.
+3. **Backpropagation**: Calculate the gradient of the loss with respect to each weight.
+4. **Gradient Descent**: Update the weights using the gradients to minimize the cost function.
+5. **Repeat**: Iterate over the training data and update the model weights to improve predictions.
+
+Below is a high-level pseudocode illustrating the steps involved in training a neural network:
+
+```python
+# Pseudocode for Training a Neural Network
+initialize_weights()  # Initialize weights and biases randomly (e.g., He initialization)
+
+for epoch in range(epochs):
+    for each_batch in training_data:
+        # Forward Propagation
+        activations = forward_propagation(batch_data)
+        
+        # Calculate Loss (Cross-Entropy)
+        loss = calculate_loss(activations, true_labels)
+        
+        # Backpropagation
+        gradients = backpropagate(loss)
+        
+        # Update Weights using Gradient Descent
+        weights, biases = update_weights(weights, biases, gradients, learning_rate)
+
+    print("Epoch", epoch, "Loss:", loss)
+
+# Final model is trained with updated weights
+```
+
+
 ### What is Forward Propagation?
-Forward propagation is the process of passing input data through the network layer by layer to generate predictions.
+**Forward propagation** refers to the process of passing input data through the network's layers to generate predictions. During forward propagation, the input is processed layer by layer, with each layer applying weights, biases, and an activation function to produce an output. The final output is the model's prediction.
+
+- **Example**: Given an image of a handwritten digit, forward propagation will transform the raw pixel data through the network's layers, ultimately predicting the digit (e.g., 5).
 
 ### What is a Loss Function?
-A loss function measures how far the model’s predictions are from the actual values.
+A **loss function** quantifies how well or poorly the model’s predictions match the actual values. The goal during training is to minimize the loss function. Common examples of loss functions include **mean squared error** for regression tasks and **cross-entropy loss** for classification tasks.
+
+- **Example**: If the true label for an image is "cat" and the model predicts "dog," the loss function will measure how different the predicted output is from the actual label.
 
 ### What is Cross-Entropy Loss?
-Cross-entropy loss is used in classification tasks to measure the difference between the predicted probability distribution and the true labels.
-\[ L = -\sum_{i} y_i \log(\hat{y}_i) \]
+**Cross-entropy loss** is commonly used in classification tasks, particularly when the model outputs probabilities (e.g., with a softmax activation). It measures the difference between the true probability distribution (true labels) and the predicted distribution (model's output).
+
+The formula for cross-entropy loss is:
+$$ L = -\sum_{i} y_i \log(\hat{y}_i) $$  
+where \(y_i\) is the true label and \(\hat{y}_i\) is the predicted probability.
+
+- **Example**: For a binary classification, if the model predicts a 0.8 probability for the correct class, the loss will be lower than if the prediction was 0.1.
 
 ### What is a Cost Function?
-A cost function aggregates the loss function over all training examples.
+The **cost function** is the average of the loss function over all training examples. It is used to evaluate the overall performance of the network during training. Minimizing the cost function improves the model's ability to make correct predictions on new, unseen data.
+
+- **Example**: If the model has multiple data points, the cost function will aggregate the individual losses for each data point into a single value that can be minimized during training.
 
 ### What is Gradient Descent?
-Gradient descent is an optimization algorithm that adjusts weights and biases to minimize the cost function.
+**Gradient descent** is an optimization algorithm used to minimize the cost function by adjusting the weights and biases of the network. It works by calculating the gradient (or derivative) of the cost function with respect to the weights, and then adjusting the weights in the opposite direction of the gradient to reduce the loss.
+
+- **Example**: If the model's cost function is high, gradient descent will "move" the weights in a direction that reduces the cost, gradually improving the model.
 
 ### What is Backpropagation?
-Backpropagation is the process of computing gradients of the cost function with respect to the weights, used to update the network during training.
+**Backpropagation** is the process of calculating the gradient of the cost function with respect to each weight in the network, and then using that gradient to update the weights. It works by applying the chain rule of calculus to compute the gradients layer by layer from the output back to the input.
+
+- **Example**: If a weight is causing a large error in the output, backpropagation will calculate how much that weight contributed to the error and adjust it accordingly.
 
 ### What is a Computation Graph?
-A computation graph is a visual representation of the operations and data flow in a neural network, useful for understanding forward and backward passes.
+A **computation graph** is a diagram that represents the flow of operations in a neural network. Each node represents an operation (like addition or multiplication), and edges represent the data passing between operations. This graph is used for both forward propagation (calculating predictions) and backward propagation (calculating gradients).
+
+- **Example**: In a neural network, the computation graph will show the flow from input layers through hidden layers, and finally to the output layer, with corresponding gradients computed during backpropagation.
 
 ### How to Initialize Weights/Biases
-- **Random Initialization**: Prevents all nodes from learning the same thing.
-- **Zero Initialization**: Not recommended as it leads to symmetry problems.
-- **He or Xavier Initialization**: Used to improve convergence in deep networks.
+Proper initialization of weights and biases is crucial for training a neural network. If weights are initialized improperly, training can become slow or fail.
+
+- **Random Initialization**: Prevents symmetry problems by assigning random values to weights, ensuring that different neurons in the same layer learn different features.
+- **Zero Initialization**: Not recommended as it leads to symmetry and prevents the model from learning diverse features.
+- **He or Xavier Initialization**: Specifically designed for deep networks, it sets the weights based on the number of neurons in the previous layer to ensure that the activations do not vanish or explode.
 
 ### Importance of Vectorization
-Vectorization speeds up computations by using matrix operations instead of loops, leveraging hardware acceleration.
+**Vectorization** refers to performing matrix operations instead of looping through individual elements, leveraging hardware acceleration to speed up computations. In neural networks, vectorized operations allow efficient computation of activations and gradients, reducing training time significantly.
+
+- **Example**: Instead of processing each training example one by one in a loop, vectorized operations can handle entire batches of data simultaneously, leading to faster training.
 
 ---
 
-## 6. Data Handling and Preprocessing
 
-### How to Split Up Your Data
-- **Training Set**: Used to train the model.
-- **Validation Set**: Used to tune hyperparameters.
-- **Test Set**: Used to evaluate the final model’s performance.
 
-### What is Pickling in Python?
-Pickling is a method of serializing and saving Python objects (like models and datasets) for later use.
 
----
+
 
 
