@@ -89,6 +89,7 @@ The **softmax function** is typically used in the output layer of a neural netwo
 
 $$ \sigma(z)_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$
 
+
 <img src="https://cdn.botpenguin.com/assets/website/Softmax_Function_07fe934386.png" width="300"/>
 
 - It converts the output of a network into a probability distribution, so each class's output can be interpreted as the likelihood of the input belonging to that class.
