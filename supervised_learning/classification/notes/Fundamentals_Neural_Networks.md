@@ -89,7 +89,7 @@ The **softmax function** is typically used in the output layer of a neural netwo
 
 $$ \sigma(z)_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$
 
-$$ \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} $$
+$$ \sigmoid(x) = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$
 
 <img src="https://cdn.botpenguin.com/assets/website/Softmax_Function_07fe934386.png" width="300"/>
 
