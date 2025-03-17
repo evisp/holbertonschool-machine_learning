@@ -87,8 +87,6 @@ $$ f(x) = \max(0, x) $$
 ### Softmax Function
 The **softmax function** is typically used in the output layer of a neural network for multi-class classification problems. It converts the raw output values (logits) into probabilities that sum to 1, making it useful for problems where each input belongs to one of several categories.
 
-$$ \sigma(z)_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$
-
 $$ \sigmoid(x) = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$
 
 <img src="https://cdn.botpenguin.com/assets/website/Softmax_Function_07fe934386.png" width="300"/>
@@ -99,18 +97,54 @@ $$ \sigmoid(x) = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$
 
 ## 4. Logistic Regression and Classification
 
+Classification algorithms are used to predict discrete categories or labels from input data. Logistic regression is one of the simplest yet most effective classification techniques, commonly used for binary classification problems, while multiclass classification involves categorizing inputs into more than two classes. One-hot vectors are used for representing categorical data in a format suitable for machine learning models.
+
 ### What is Logistic Regression?
-Logistic Regression is a classification algorithm that uses the sigmoid function to predict binary outcomes.
+Logistic Regression is a classification algorithm that predicts binary outcomes (0 or 1) using the **sigmoid function**. It models the probability of an event occurring based on input features. The sigmoid function maps any real-valued number to a value between 0 and 1, which can be interpreted as a probability. If the probability is greater than 0.5, the model predicts one class; otherwise, it predicts the other.
+
+- **Mathematical Formulation**:  
+  The logistic regression model is typically expressed as:
+  $$ p(y = 1 | X) = \frac{1}{1 + e^{-z}} $$
+  where \( z = w_1x_1 + w_2x_2 + ... + w_nx_n + b \), and \( w_i \) are the weights, \( x_i \) are the features, and \( b \) is the bias term.
+
+- **Intuition**: Logistic regression estimates the probability of a binary outcome (like "spam" or "not spam") based on input features (like email content). If the estimated probability exceeds a threshold (often 0.5), the model predicts one class; otherwise, it predicts the other.
+
+- **Illustration**: Imagine you have a dataset of emails, and you're trying to predict whether an email is spam (1) or not spam (0). The model will learn a weight for each feature (e.g., words in the email) and calculate a probability for each new email.
 
 ### What is Multiclass Classification?
-Multiclass classification involves categorizing inputs into more than two distinct classes using methods like softmax activation.
+**Multiclass classification** is a type of classification where an input can belong to one of more than two distinct categories. Unlike binary classification, which only has two possible outcomes, multiclass classification involves more than two classes. The **softmax activation function** is typically used to handle multiclass problems, converting raw model outputs (logits) into probabilities that sum to 1.
+
+- **Softmax Function**: The softmax function calculates the probability of each class given the inputs:
+  $$ \sigma(z)_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}} $$  
+  where \( z_i \) are the raw outputs (logits) for each class. The softmax function ensures that the predicted probabilities for all classes sum to 1, making them interpretable as probabilities.
+
+- **Illustration**: Imagine a model that classifies fruits as "apple," "banana," or "cherry." The softmax function will assign a probability to each fruit, such as 0.7 for apple, 0.2 for banana, and 0.1 for cherry. The class with the highest probability is selected as the prediction.
 
 ### What is a One-Hot Vector?
-A one-hot vector is a binary representation of categorical data, where only one element is 1, and the rest are 0.
+A **one-hot vector** is a binary representation of categorical data, where only one element is set to 1, and all other elements are 0. This vector is commonly used to represent classes in classification tasks, as many machine learning models (like neural networks) require numerical input.
+
+- **Example**: If you have three classes—apple, banana, and cherry—a one-hot encoding for each class would look like:
+  - Apple: [1, 0, 0]
+  - Banana: [0, 1, 0]
+  - Cherry: [0, 0, 1]
+
+- **Intuition**: A one-hot vector uniquely identifies a class without assuming any order or relationship between classes. For example, "apple" is not numerically greater or less than "banana"; they are simply different.
+
+- **Illustration**: When training a model to classify fruits, instead of using labels like "apple" or "banana," you would use one-hot vectors like [1, 0, 0] for "apple" and [0, 1, 0] for "banana."
 
 ### How to Encode/Decode One-Hot Vectors
-- **Encoding**: Convert categorical labels into one-hot vectors.
-- **Decoding**: Convert a one-hot vector back into a categorical label.
+
+#### Encoding:
+**Encoding** involves converting categorical labels (like "apple," "banana," "cherry") into one-hot vectors. This is typically done using a process like the following:
+- Assign each class a unique index (e.g., "apple" = 0, "banana" = 1, "cherry" = 2).
+- Convert the index of the class into a vector where the index corresponding to the class is 1, and all other indices are 0.
+
+- **Example**: If you have a class "banana," it will be encoded as [0, 1, 0] if "banana" is at index 1.
+
+#### Decoding:
+**Decoding** is the reverse process, where you convert a one-hot vector back into its corresponding categorical label. This is done by finding the index of the value 1 in the vector, which corresponds to the predicted class.
+
+- **Example**: If the one-hot vector is [0, 1, 0], the decoded label is "banana."
 
 ---
 
