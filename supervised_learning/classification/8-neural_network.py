@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
     Class NeuralNetwork : NN with one hidden layer
@@ -38,4 +37,3 @@ class NeuralNetwork:
         self.W2 = np.random.randn(1, nodes)
         self.b2 = 0
         self.A2 = 0
-
