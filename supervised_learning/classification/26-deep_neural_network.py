@@ -147,7 +147,8 @@ class DeepNeuralNetwork:
             # update dz_f with new value found
             dZ_f = dZ
 
-    def train(self, X, Y, iterations=5000, alpha=0.05):
+    def train(self, X, Y, iterations=5000, alpha=0.05,
+              verbose=True, graph=True, step=100):
         """
             Method to train deep neural network
 
@@ -155,24 +156,61 @@ class DeepNeuralNetwork:
             :param Y: ndarray, shapte(1,m), correct labels
             :param iterations: number of iterations to train over
             :param alpha: learning rate
+            :param verbose: boolean print or not information
+            :param graph: boolean print or not graph
+            :param step: int
 
             :return: evaluation of training after iterations
         """
 
         if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
-        if iterations < 0:
+        if iterations <= 0:
             raise ValueError("iterations must be a positive integer")
         if not isinstance(alpha, float):
             raise TypeError("alpha must be a float")
-        if alpha < 0:
+        if alpha <= 0:
             raise ValueError("alpha must be positive")
+        if not isinstance(verbose, bool):
+            raise TypeError("verbose must be a boolean")
+        if not isinstance(graph, bool):
+            raise TypeError("graph must be a boolean")
+        if verbose is True or graph is True:
+            if not isinstance(step, int):
+                raise TypeError("step must be an integer")
+            if step <= 0 or step > iterations:
+                raise ValueError("step must be positive and <= iterations")
 
-        for i in range(iterations):
+        # list to store cost /iter
+        costs = []
+        count = []
+
+        for i in range(iterations + 1):
             # run forward propagation
-            self.forward_prop(X)
-            # run gradient descent
-            self.gradient_descent(Y, self.cache, alpha)
+            A, cache = self.forward_prop(X)
+
+            # run gradient descent for all iterations except the last one
+            if i != iterations:
+                self.gradient_descent(Y, self.cache, alpha)
+
+            cost = self.cost(Y, A)
+
+            # store cost for graph
+            costs.append(cost)
+            count.append(i)
+
+            # verbose TRUE, every step + first and last iteration
+            if verbose and (i % step == 0 or i == 0 or i == iterations):
+                # run evaluate
+                print("Cost after {} iterations: {}".format(i, cost))
+
+        # graph TRUE after training complete
+        if graph:
+            plt.plot(count, costs, 'b-')
+            plt.xlabel('iteration')
+            plt.ylabel('cost')
+            plt.title('Training Cost')
+            plt.show()
 
         return self.evaluate(X, Y)
 
