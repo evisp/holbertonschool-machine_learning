@@ -1,31 +1,27 @@
 #!/usr/bin/env python3
 """
-    Create layer with Dropout regularization
+Task 6 : dropout
 """
+import tensorflow as tf
 
-import tensorflow.compat.v1 as tf
 
-
-def dropout_create_layer(prev, n, activation, keep_prob):
-    """
-        function that creates layer of NN using dropout
+def dropout_create_layer(prev, n, activation, keep_prob, training=True):
     """
 
-    # define layer Dropout
-    dropout_layer = tf.compat.v1.layers.Dropout(rate=keep_prob)
+    """
 
-    # set initialization to He et. al
-    initializer = tf.keras.initializers.VarianceScaling(scale=2.0,
-                                                        mode='fan_avg')
+    # Initialize layer weights using He initialization
+    init = tf.keras.initializers.VarianceScaling(scale=2.0, mode='fan_avg')
 
-    # apply dropout
-    new_layer = (
-        tf.layers.Dense(n,
-                        activation=activation,
-                        kernel_initializer=initializer,
-                        kernel_regularizer=dropout_layer,
-                        name="layer"))
+    # Create dense layer
+    dense_layer = tf.keras.layers.Dense(units=n, activation=activation,
+                                        kernel_initializer=init)
 
-    output = new_layer(prev)
+    # Apply dense layer to previous layer
+    output = dense_layer(prev)
+
+    # Apply dropout regularization
+    dropout_layer = tf.keras.layers.Dropout(rate=1-keep_prob)
+    output = dropout_layer(output, training=training)
 
     return output
