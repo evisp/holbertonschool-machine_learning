@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.env
+.venv/
+venv/
+env/
+
+# IDE / editor
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Logs and caches
+*.log
+.cache/
+
+# Model artifacts
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.keras
+*.pkl
+*.joblib
