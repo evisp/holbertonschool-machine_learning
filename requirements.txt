@@ -1,0 +1,25 @@
+# Holberton School Machine Learning
+# Trimester 1: Data Analyst
+# Python 3.10 (Ubuntu 22.04)
+
+# Read the maths / Move data with code
+numpy>=1.26
+scipy>=1.11
+
+# Get it and clean it
+pandas>=2.1
+requests>=2.31
+pymongo>=4.6
+SQLAlchemy>=2.0
+
+# Explain it, then predict
+matplotlib>=3.8
+seaborn>=0.13
+scikit-learn>=1.4
+
+# Notebooks
+jupyterlab>=4.0
+ipykernel>=6.29
+
+# Code style
+pycodestyle>=2.11
