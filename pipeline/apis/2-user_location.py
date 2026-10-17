@@ -3,9 +3,7 @@
 
 """
 Print the location of a GitHub user.
-
 Usage: ./2-user_location.py https://api.github.com/users/<username>
-
 Prints the user's location, "Not found" if the user does not exist, or the
 number of minutes until the rate limit resets if the limit was exceeded.
 """
