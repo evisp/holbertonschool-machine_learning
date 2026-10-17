@@ -34,3 +34,6 @@ Thumbs.db
 *.keras
 *.pkl
 *.joblib
+
+# Datasets (downloaded separately, too large to commit)
+*.csv

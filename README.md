@@ -30,7 +30,7 @@ flowchart TB
     T1 --> T2 --> T3 --> P(["Portfolio project"])
 
     classDef open fill:#2da44e,stroke:#1a7f37,color:#ffffff
-    class A2 open
+    class A2,A4 open
 ```
 
 Green milestones have solutions in this repository. The rest open as the cohort reaches them.
@@ -46,17 +46,25 @@ Green milestones have solutions in this repository. The rest open as the cohort 
 ```
 holbertonschool-machine_learning/
 ├── README.md               <- you are here: the whole programme
-└── math/
-    ├── README.md           <- why maths, and what is inside
-    └── linear_algebra/
-        ├── README.md       <- goals, tasks, and key ideas for the project
-        └── 0-*.py          <- one file per task
+├── math/
+│   ├── README.md           <- why maths, and what is inside
+│   └── linear_algebra/
+│       ├── README.md       <- goals, tasks, and key ideas for the project
+│       └── 0-*.py          <- one file per task
+└── pipeline/
+    ├── README.md           <- why data pipelines, and what is inside
+    ├── apis/
+    │   ├── README.md
+    │   └── 0-*.py
+    └── pandas/
+        ├── README.md
+        └── 0-*.py
 ```
 
 Four rules keep it easy to navigate:
 
-1. **One directory per topic.** For example `math/`.
-2. **One subdirectory per project.** For example `math/linear_algebra/`.
+1. **One directory per topic.** For example `math/` or `pipeline/`.
+2. **One subdirectory per project.** For example `math/linear_algebra/` or `pipeline/apis/`.
 3. **One file per task,** named with the task number first so files sort in order.
 4. **Every directory has a README** that says what it contains and why it matters.
 
