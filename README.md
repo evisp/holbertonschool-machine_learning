@@ -41,34 +41,23 @@ Green milestones have solutions in this repository. The rest open as the cohort 
 | 2. Machine Learning Engineer | call a model | build one, train it properly, and explain why it fails when it does |
 | 3. AI Engineer | train models | build products on top of them that other people can use |
 
-## How the repository is organised
+## What is inside
 
-```
-holbertonschool-machine_learning/
-├── README.md               <- you are here: the whole programme
-├── math/
-│   ├── README.md           <- why maths, and what is inside
-│   └── linear_algebra/
-│       ├── README.md       <- goals, tasks, and key ideas for the project
-│       └── 0-*.py          <- one file per task
-└── pipeline/
-    ├── README.md           <- why data pipelines, and what is inside
-    ├── apis/
-    │   ├── README.md
-    │   └── 0-*.py
-    └── pandas/
-        ├── README.md
-        └── 0-*.py
-```
+| Topic | Project | What you build |
+|-------|---------|----------------|
+| [Math](./math) | [Linear algebra](./math/linear_algebra) | Vector and matrix operations, first in plain Python, then in NumPy |
+| [Math](./math) | [Probability](./math/probability) | Poisson, exponential, normal and binomial distributions from scratch |
+| [Pipeline](./pipeline) | [APIs](./pipeline/apis) | Requests, JSON, pagination and rate limits against real web services |
+| [Pipeline](./pipeline) | [Pandas](./pipeline/pandas) | Loading, cleaning, indexing, merging and summarising tabular data |
 
-Four rules keep it easy to navigate:
+Each project has its own README with its goal, learning objectives and the key ideas behind its tasks. Start there.
 
-1. **One directory per topic.** For example `math/` or `pipeline/`.
-2. **One subdirectory per project.** For example `math/linear_algebra/` or `pipeline/apis/`.
-3. **One file per task,** named with the task number first so files sort in order.
-4. **Every directory has a README** that says what it contains and why it matters.
+## How to get the most from it
 
-When you build your own repository, organise it the same way. A reviewer should be able to find any task in a few seconds.
+1. Read the project README for the goal before you write any code.
+2. Work a tiny example by hand, then write the code.
+3. Test with your own inputs, not only the ones the task gives.
+4. Compare with the solution here only after you have a working answer of your own.
 
 ## Environment
 
